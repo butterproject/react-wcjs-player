@@ -1,0 +1,24 @@
+{
+  "name": "react-wcjs-player",
+  "version": "0.0.0",
+  "description": "A react component that plays viedos with webchimera.js (wcjs-renderer)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/butterproject/react-wcjs-player"
+  },
+  "keywords": [
+    "react",
+    "wcjs",
+    "webchimera",
+    "video"
+  ],
+  "author": "Niv Sardi <x@btn.sh>",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/butterproject/react-wcjs-player/issues"
+  }
+}

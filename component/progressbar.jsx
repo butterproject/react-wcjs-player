@@ -53,7 +53,7 @@ export default class ProgressBar extends React.Component {
 
     updateDimensions = () => {
         console.log ('update')
-        this.setState({rect: this.refs.progress.getDOMNode()
+        this.setState({rect: this.refs.progress
                                  .getBoundingClientRect()})
     }
 

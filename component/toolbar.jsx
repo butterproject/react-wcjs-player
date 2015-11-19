@@ -1,17 +1,51 @@
 import React from 'react'
 import ProgressBar from './progressbar'
 
+import PlayerActions from './actions/player';
+import PlayState from './playstate';
+import PlayStore from './stores';
+
 import style from './css/general.module.css'
 
 import {prettyTime, c, i18n} from './utils'
 
-export class PlayPauseButton extends React.Component {
+export class PlayStateComponent extends React.Component {
+    componentDidMount() {
+        PlayStore.listen(this.onChange)
+    }
+
+    componentWillUnmount() {
+        Playstore.unlisten(this.onChange)
+    }
+
+    onChange(newState) {
+        this.setState(newState)
+    }
+}
+
+export class PlayPauseButton extends PlayStateComponent {
     static propTypes = {
         paused: React.PropTypes.bool,
         playing: React.PropTypes.bool
     }
 
+    togglePlayPause() {
+        let nextState = 'PLAYING';
+
+        switch (PlayStore.playState) {
+            case PlayState.PLAYING:
+                nextState = 'PAUSED';
+                break;
+            case PlayState.PAUSED:
+            default:
+                break;
+        }
+
+        PlayerActions.updatePlayState(PlayState[nextState])
+    }
+
     render() {
+        console.log ('play/paused', this.props)
         let className = (this.props.paused)?style.play:
                         (this.props.playing)?style.pause:
                         style.play;
@@ -20,7 +54,7 @@ export class PlayPauseButton extends React.Component {
     }
 }
 
-export class TimeIndicator extends React.Component {
+export class TimeIndicator extends PlayStateComponent {
     render() {
         return (
             <div className={style.time}>
@@ -37,7 +71,7 @@ export class TimeIndicator extends React.Component {
 }
 
 
-export class RightButton extends React.Component {
+export class RightButton extends PlayStateComponent {
     render() {
         return (
             <div className={c(style, ['button', 'right', this.props.className])}
@@ -47,7 +81,7 @@ export class RightButton extends React.Component {
     }
 }
 
-export class ToggleMaximizeButton extends React.Component {
+export class ToggleMaximizeButton extends PlayStateComponent {
     render() {
         let icon = (this.props.fullscreen)?'minimize':'maximize'
         return (
@@ -57,7 +91,7 @@ export class ToggleMaximizeButton extends React.Component {
     }
 }
 
-export class PlaylistButton extends React.Component {
+export class PlaylistButton extends PlayStateComponent {
     render() {
         return (
             <RightButton  className='playlistButton' />
@@ -65,7 +99,7 @@ export class PlaylistButton extends React.Component {
     }
 }
 
-export class SubtitleButton extends React.Component {
+export class SubtitleButton extends PlayStateComponent {
     render() {
         return (
             <RightButton className='subtitleButton' />
@@ -73,7 +107,7 @@ export class SubtitleButton extends React.Component {
     }
 }
 
-export class VolumeButton extends React.Component {
+export class VolumeButton extends PlayStateComponent {
     render() {
         return (
             <span>
@@ -89,7 +123,7 @@ export class VolumeButton extends React.Component {
     }
 }
 
-export class ToolBarButtons extends React.Component {
+export class ToolBarButtons extends PlayStateComponent {
     render() {
         return (
             <div style={{marginTop: this.props.length?8:0}}>
@@ -115,7 +149,7 @@ export class ToolBarButtons extends React.Component {
     }
 }
 
-export default class ToolBar extends React.Component {
+export default class ToolBar extends PlayStateComponent {
     constructor(props) {
         super(props)
     }
