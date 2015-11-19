@@ -58,6 +58,7 @@
   "dependencies": {
     "alt": "^0.17.9",
     "file-loader": "^0.8.4",
+    "react-router": "^1.0.0",
     "url-loader": "^0.5.6"
   }
 }

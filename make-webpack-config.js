@@ -56,7 +56,8 @@ module.exports = function(options){
     },
     externals: [
       'wcjs-renderer',
-      'react'
+      'react',
+      'react-router'
     ],
     output: {
       library: 'react-wcjs-player',
