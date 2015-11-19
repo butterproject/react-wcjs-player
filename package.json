@@ -1,0 +1,48 @@
+{
+  "name": "react-wcjs-player",
+  "version": "0.0.0",
+  "description": "A react component that plays viedos with webchimera.js (wcjs-renderer)",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf dist lib tmp",
+    "build:umd": "webpack src/index.js dist/react-wcjs-player.js",
+    "build:umd:min": "webpack --config webpack.config.prod.js src/index.js dist/react-wcjs-player.min.js",
+    "build:lib": "babel src --out-dir lib",
+    "build": "npm run build:umd && npm run build:umd:min && npm run build:lib",
+    "lint": "standard ./src",
+    "prepublish": "npm run clean && npm run build",
+    "test": "npm run lint -s && babel-node ./tests | tap-spec",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "devDependencies": {
+      "babel": "^5.5.8",
+      "babel-core": "^5.6.18",
+      "babel-eslint": "^3.1.15",
+      "babel-loader": "^5.1.4",
+      "rimraf": "^2.3.4",
+        "standard": "^5.0.0-2",
+      "tap-spec": "^4.0.2",
+      "tape": "^4.0.1",
+      "webpack": "^1.9.6",
+      "webpack-dev-server": "^1.8.2",
+      "semantic-release": "^4.0.0"
+  },
+  "peerDependencies": {
+      "react": ">=0.13.2 || ^0.14.0-rc1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/butterproject/react-wcjs-player"
+  },
+  "keywords": [
+    "react",
+    "wcjs",
+    "webchimera",
+    "video"
+  ],
+  "author": "Niv Sardi <x@btn.sh>",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/butterproject/react-wcjs-player/issues"
+  }
+}
