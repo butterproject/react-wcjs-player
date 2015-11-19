@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf dist lib tmp",
-    "build:umd": "webpack src/index.js dist/react-wcjs-player.js",
-    "build:umd:min": "webpack --config webpack.config.prod.js src/index.js dist/react-wcjs-player.min.js",
+    "build:umd": "webpack src/index.jsx dist/react-wcjs-player.js",
+    "build:umd:min": "webpack --config webpack.config.prod.js src/index.jsx dist/react-wcjs-player.min.js",
     "build:lib": "babel src --out-dir lib",
     "build": "npm run build:umd && npm run build:umd:min && npm run build:lib",
     "lint": "standard ./src",
@@ -15,20 +15,30 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
-      "babel": "^5.5.8",
-      "babel-core": "^5.6.18",
-      "babel-eslint": "^3.1.15",
-      "babel-loader": "^5.1.4",
-      "rimraf": "^2.3.4",
-        "standard": "^5.0.0-2",
-      "tap-spec": "^4.0.2",
-      "tape": "^4.0.1",
-      "webpack": "^1.9.6",
-      "webpack-dev-server": "^1.8.2",
-      "semantic-release": "^4.0.0"
+    "babel": "^5.5.8",
+    "babel-core": "^5.6.18",
+    "babel-eslint": "^3.1.15",
+    "babel-loader": "^5.1.4",
+    "babel-plugin-rewire": "^0.1.22",
+    "rimraf": "^2.3.4",
+    "semantic-release": "^4.0.0",
+    "standard": "^5.0.0-2",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.1",
+    "webpack": "^1.9.6",
+    "webpack-dev-server": "^1.8.2",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "style-loader": "^0.13.0",
+    "css-loader": "^0.22.0",
+    "css-modules-require-hook": "^2.0.2",
+    "postcss": "^5.0.11",
+    "postcss-modules-extract-imports": "^1.0.0",
+    "postcss-modules-local-by-default": "^1.0.0",
+    "postcss-modules-scope": "^1.0.0",
+    "postcss-modules-values": "^1.1.1"
   },
   "peerDependencies": {
-      "react": ">=0.13.2 || ^0.14.0-rc1"
+    "react": ">=0.13.2 || ^0.14.0-rc1"
   },
   "repository": {
     "type": "git",
@@ -41,8 +51,13 @@
     "video"
   ],
   "author": "Niv Sardi <x@btn.sh>",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/butterproject/react-wcjs-player/issues"
+  },
+  "dependencies": {
+    "alt": "^0.17.9",
+    "file-loader": "^0.8.4",
+    "url-loader": "^0.5.6"
   }
 }
