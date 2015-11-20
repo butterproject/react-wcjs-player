@@ -5,12 +5,6 @@ import wcjsRenderer from 'wcjs-renderer';
 import PlayerActions from '../actions';
 import PlayerStore from '../store';
 
-try {
-    var wcjs = require(path.join(process.cwd(), 'resources/bin/', 'WebChimera.js.node'));
-} catch (e) {
-    console.error('WCJS Load Error:', e);
-}
-
 export
 default React.createClass({
     getInitialState() {
@@ -34,7 +28,7 @@ default React.createClass({
     },
 
     initPlayer() {
-        PlayerActions.wcjsInit(wcjsRenderer.init(wcjs, this.refs['wcjs-render'], [
+        PlayerActions.wcjsInit(wcjsRenderer.init(this.refs['wcjs-render'], [
             "--no-media-library",
             "--no-sub-autodetect-file",
             "--no-spu",
